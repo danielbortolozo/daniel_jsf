@@ -5,7 +5,6 @@
  */
 package br.com.maven.model;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -17,35 +16,41 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
 
-/**
- *
- * @author daniel
- */
 @Entity
-@Table(name="cidade")
-public class Cidade implements Serializable {
+@Table
+public class Estado {
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id_cidade", nullable=false)
-    private Integer id_cidade;
+    @Column(name="id_estado", nullable=false)
+    private Integer id_tipologradouro;
     @Column(name="nome", nullable = false)
     private String nome;
     
     @OneToMany
-    @ForeignKey(name="FK_EnderecoCidade")
+    @ForeignKey(name="FK_Estado_Endereco")
     private List<Endereco> enderecos;
-    
-    
-    public Cidade() {
+
+    public Estado() {
     }
 
-    public Integer getId_cidade() {
-        return id_cidade;
+    public List<Endereco> getEnderecos() {
+        return enderecos;
     }
 
-    public void setId_cidade(Integer id_cidade) {
-        this.id_cidade = id_cidade;
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
+
+    
+    
+    public Integer getId_tipologradouro() {
+        return id_tipologradouro;
+    }
+
+    public void setId_tipologradouro(Integer id_tipologradouro) {
+        this.id_tipologradouro = id_tipologradouro;
     }
 
     public String getNome() {
@@ -59,7 +64,7 @@ public class Cidade implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id_cidade);
+        hash = 37 * hash + Objects.hashCode(this.id_tipologradouro);
         return hash;
     }
 
@@ -71,16 +76,12 @@ public class Cidade implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cidade other = (Cidade) obj;
-        if (!Objects.equals(this.id_cidade, other.id_cidade)) {
+        final Estado other = (Estado) obj;
+        if (!Objects.equals(this.id_tipologradouro, other.id_tipologradouro)) {
             return false;
         }
         return true;
     }
-    
-    
-    
-    
     
     
 }
