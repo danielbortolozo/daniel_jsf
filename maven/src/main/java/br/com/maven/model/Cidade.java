@@ -36,8 +36,7 @@ public class Cidade implements Serializable {
     @ForeignKey(name="FK_EnderecoCidade")
     private List<Endereco> enderecos;
     
-    @Column
-    private String descricao;
+    
     
     public Cidade() {
     }
